@@ -1,0 +1,68 @@
+<html>
+<head>
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+(function(para) {
+  var p = para.sdk_url, n = para.name, w = window, d = document, s = 'script',x = null,y = null;
+  w['sensorsDataAnalytic201505'] = n;
+  w[n] = w[n] || function(a) {return function() {(w[n]._q = w[n]._q || []).push([a, arguments]);}};
+  var ifs = ['track','quick','register','registerPage','registerOnce','clearAllRegister','trackSignup', 'trackAbtest', 'setProfile','setOnceProfile','appendProfile', 'incrementProfile', 'deleteProfile', 'unsetProfile', 'identify','login','logout','trackLink','clearAllRegister'];
+  for (var i = 0; i < ifs.length; i++) {
+    w[n][ifs[i]] = w[n].call(null, ifs[i]);
+  }
+  if (!w[n]._t) {
+    x = d.createElement(s), y = d.getElementsByTagName(s)[0];
+    x.async = 1;
+    x.src = p;
+    w[n].para = para;
+    y.parentNode.insertBefore(x, y);
+  }
+})({
+      sdk_url: './zalldata.min.js ',
+      heatmap_url:'./heatmap.min.js',
+      name: 'zall',
+      is_track_single_page:false,
+      use_client_time:true,
+      server_url:'http://61.183.199.182:18081/a?service=zall&project=shoptest1&token=IiRsaWJfdmVyc2lvbiI6IjEuMTUuMjY&gzip=0',
+      heatmap: {
+         //是否开启点击图，默认 default 表示开启，自动采集 $WebClick 事件，可以设置 'not_collect' 表示关闭
+         clickmap:'default',
+         //是否开启触达注意力图，默认 default 表示开启，自动采集 $WebStay 事件，可以设置 'not_collect' 表示关闭
+         scroll_notice_map:'default'
+      }
+    });  
+    zall.quick('autoTrack'); 
+</script>    
+<script src="./zalldata.min.js"></script>
+<script src="./heatmap.min.js"></script>
+<script>
+  zall.registerPage({
+	current_url: location.href,
+	name: "test"
+});
+</script>
+</head>
+<body>
+<button>数据上报测试按钮</button>
+
+<div class="panel-body" style="height: 400px; overflow:scroll">
+            <div style="border: 1px  #000000; width: 90%; margin: 0 auto;">
+                <span>
+        
+            </span>
+            </div>
+        </div>
+		
+		// 下面演示一个 button 按钮被点击时触发预置的元素点击事件
+<button id="testp">测试按钮</button>
+<input type="text" placeholder="输入搜索关键词" id="keyWord"/>
+<button type="button" id="search">搜索</button>
+<script>
+document.getElementById("search").onclick = function(){
+        //记录搜索（search）事件
+        zall.track("search",{"searchKeyWord":$('searchKeyWord').val()
+    });
+}
+</script>
+</body>
+</html>
